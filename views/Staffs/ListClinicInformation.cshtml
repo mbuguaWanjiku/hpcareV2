@@ -1,0 +1,65 @@
+﻿<div class="row">
+    <div class="col-md-1"></div>
+    <div class="panel panel-widget col-md-10">
+        <div class="progressbar-heading grids-heading">
+            <h2>Profile Page</h2>
+        </div>
+        <div class="col-md-12" ng-controller="StaffInformationsController" ng-init="Init()">
+            <div class="forms">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label for="focusedinput1" class="col-md-2 control-label">Name</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="focusedinput1" placeholder="{{Name}}" ng-model="Staff.Name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Gender</label>
+                        <div class="col-md-8">
+                            <select ng-options="x as x.GenderName for x in Genders" ng-model="gender">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Marital Status</label>
+                        <div class="col-md-8">
+                            <select ng-options="x as x.MaritalStatusName for x in Marital" ng-model="MaritalStatus">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="focusedinput4" class="col-md-2 control-label">Address</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="focusedinput4" placeholder="{{Address}}" ng-model="Staff.Address" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="focusedinput5" class="col-md-2 control-label">Email</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="focusedinput5" placeholder="{{Email}}" ng-model="Staff.Email" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="focusedinput6" class="col-md-2 control-label">Telephone</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="focusedinput6" placeholder="{{Telephone}}" ng-model="Staff.Telephone" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Identification</label>
+                        <div class="col-md-8">
+                            <p class="form-control1 m-n">{{Identification}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Professional Types</label>
+                        <div class="col-md-8">
+                            <p class="form-control1 m-n">{{ProfessionalName}}</p>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" ng-click="SaveInformation(gender, MaritalStatus)" style="float:right">Save To Database</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

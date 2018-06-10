@@ -1,0 +1,38 @@
+﻿
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">Update Allergy</h4>
+</div>
+<div class="modal-body">
+    <span us-spinner="{radius:30, width:8, length: 16}"></span>
+    <div class="form-body" >
+        <form class="form-horizontal">
+
+            <div class="form-group">
+                <label for="focusedinput3" class="col-md-2 control-label">Allergy</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="focusedinput3" value="{{vm.allergyUpdate.Allergy_Name }}" ng-disabled="true"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="focusedinput4" class="col-md-2 control-label">Start Date</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="focusedinput4" value="{{vm.allergyUpdate.Allergy_start_date | jsonDate :'dd-M-yyyy'}}" ng-disabled="true"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="focusedinput5" class="col-md-2 control-label">End Date</label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" id="focusedinput5" ng-model="vm.allergyUpdate.Allergy_end_date" />
+                </div>
+             </div>   
+          
+            
+            <div class="modal-footer" >
+              
+                <button type="button" class="btn btn-primary" ng-click="vm.updateAllergyDB(vm.allergyUpdate);$close()">Save To Database</button>
+            </div>
+        </form>
+    </div>
+</div>

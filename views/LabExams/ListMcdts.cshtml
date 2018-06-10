@@ -1,0 +1,102 @@
+﻿
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="panel panel-widget col-md-10">
+        <ul class="nofitications-dropdown pull-right" style="margin-top:-4%;margin-right:-3%;">
+
+            <li class="dropdown head-dpdn">
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-question-circle-o"></i></a>
+                <ul class="dropdown-menu anti-dropdown-menu">
+                    <li>
+                        <div class="notification_header">
+                            <h3>List MCDTs</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="modal-body" ng-controller="HelpController">
+                            <span class="task-desc">{{helpListMdts}}</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="col-md-12" ng-controller="LabExamsController" ng-init="InitInformation()">
+
+            <div class="row">
+                <div class="progressbar-heading grids-heading">
+                    <h2>Lab Exams List</h2>
+                </div>
+                <!--start filter-->
+                <div class="panel-widget">
+                    <span class="glyphicon glyphicon-filter"></span>
+
+                    <select ng-model="sortColumn" class="dropDownOptions">
+                        <option value="UserName" selected="selected">UserName</option>
+                        <option value="Discriminator">Type</option>
+                        <option value="McdtDate">Prescription Date</option>
+
+                    </select>
+                    <span></span>
+                    <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
+                </div>
+                <!--End of filter-->
+
+                <div style="overflow:auto; height: 440px;">
+
+                    <div class="col-md-12" ng-show="id == null">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Patient Name</th>
+                                    <th>MCDT Type</th>
+                                    <th>MCDT Date</th>
+                                    @*<th>Lab Date In</th>
+                                        <th>Lab Date Out</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="LabExams in mcdtsList | limitTo:rowLimit | orderBy:sortColumn" ng-hide="LabExams.Discriminator == '(Undefined)'">
+                                    <td><span ng-click="getPatientMcdts(LabExams.UserId)" class="fa fa-plus"></span></td>
+                                    <td> {{LabExams.UserName}} </td>
+                                    <td> {{LabExams.Discriminator}} </td>
+                                    <td> {{LabExams.McdtDate | jsonDate :'dd-MM-yyyy'}} </td>
+                                    <td> {{(LabExams.LabDateIn | jsonDate :'dd-MM-yyyy')  == "01-01-1970" ? "" : (LabExams.LabDateIn | jsonDate: 'dd-MM-yyyy')}} </td>
+                                    <td> {{(LabExams.LabDateOut | jsonDate :'dd-MM-yyyy')  == "01-01-1970" ? "" : (LabExams.LabDateOut | jsonDate: 'dd-MM-yyyy')}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-md-12" ng-show="id">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th><span ng-click="goBack()" class="fa fa-reply"></span></th>
+                                    <th>MCDT Type</th>
+                                    <th>MCDT Date</th>
+                                    @*<th>Lab Date In</th>
+                                        <th>Lab Date Out</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="LabExams in mcdtsList" ng-show="LabExams.UserId == id">
+                                    <td><a ng-click="getMcdtType(LabExams.McdtId, LabExams.McdtType)"><span class="fa fa-list-alt" style="color:black;"></span></a></td>
+                                    <td> {{LabExams.Discriminator}} </td>
+                                    <td> {{LabExams.McdtDate | jsonDate :'dd-MM-yyyy'}} </td>
+                                    <td> {{(LabExams.LabDateIn | jsonDate :'dd-MM-yyyy')  == "01-01-1970" ? "" : (LabExams.LabDateIn | jsonDate: 'dd-MM-yyyy')}} </td>
+                                    <td> {{(LabExams.LabDateOut | jsonDate :'dd-MM-yyyy')  == "01-01-1970" ? "" : (LabExams.LabDateOut | jsonDate: 'dd-MM-yyyy')}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-1"></div>
+</div>

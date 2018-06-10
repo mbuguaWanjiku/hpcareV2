@@ -1,0 +1,97 @@
+﻿
+<div class="col-md-1"></div>
+<fieldset ng-controller="PatientStatusController" ng-disabled="!PatientStatus">
+    <div class="panel panel-widget col-md-11">
+        <ul class="nofitications-dropdown pull-right" style="margin-top:-4%;margin-right:-3%;">
+
+            <li class="dropdown head-dpdn">
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-question-circle-o"></i></a>
+
+                <ul class="dropdown-menu anti-dropdown-menu">
+                    <li>
+                        <div class="notification_header">
+                            <h3>Classify Disease</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="modal-body" ng-controller="HelpController">
+                                <span class="task-desc">{{helpClassifyDisease}}</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="progressbar-heading grids-heading">
+            <h2>Classify Disease</h2>
+        </div>
+
+        <div class="well col-md-3" ng-controller="DiagnosisController">
+
+            <form name="diagnosisForm" ng-submit="saveToBasket()">
+                <div class="form-control-wrapper dropdown dropdown-toggle">
+                    <select id="cid_category"
+                            ng-init="CategoryList"
+                            ng-model="category"
+                            ng-options="cg as cg.Description for cg in CategoryList"
+                            ng-change="GetCode()">
+                        <option value="" selected="selected">Select Category</option>
+                    </select>
+                    <br />
+
+                    <select id="cid"
+                            ng-model="CidCode"
+                            ng-options="dg as dg.DiseaseCode for dg in CodeList ">
+                        <option value="" selected="selected">Select Code</option>
+                    </select>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" ng-click="" ng-disabled="diagnosisForm.$invalid">Add To Pool</button>
+                    </div>
+                    <br />
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-1"></div>
+
+        <div class="col-md-8  pull-right" ng-controller="DiagnosisController">
+
+            <table class="table table-hover">
+                <caption>CID Disease Classification Pool</caption>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>ICD CODE</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="DiseaseCID in CIDclassificationBuffer">
+
+                        <td> {{DiseaseCID.CIDCategory.Description}} </td>
+                        <td> {{DiseaseCID.DiseaseCode}} </td>
+                        <td>
+                            <span ng-click="deleteCIDCODE(DiseaseCID)" class="glyphicon glyphicon-trash" style="color:black"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" ng-click="saveCIDCODE()">Save To Database</button>
+            </div>
+        </div>
+        <canvas id="viewport" width="10" height="10"></canvas>
+        <!--//grids-->
+    </div>
+</fieldset>
+<script type="text/javascript" src="~/Scripts/material.min.js"></script>
+<script type="text/javascript" src="~/Scripts/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap-material-datetimepicker.js"></script>
+<script type="text/javascript" src="~/Scripts_Ajax/bootstrap.js"></script>
+
+

@@ -1,0 +1,55 @@
+﻿
+<div class="col-md-1"></div>
+<div class="panel panel-widget col-md-10" ng-controller="observationController as vm">
+    <div ui-sref="observations" class="pull-right"><span class="glyphicon glyphicon-inbox  " style="color:black"></span>New Observation</div>
+
+    <div class="progressbar-heading grids-heading">
+        <h2>Observations History</h2>
+    </div>
+    <div class="">
+        <div class="panel-widget">
+            <span class="glyphicon glyphicon-filter"></span>
+
+            <select ng-model="vm.sortColumn" class="dropDownOptions">
+                <option value="Date" selected="selected">Date</option>
+                <option value="subject">Subject</option>
+                <option value="Author">Author</option>
+
+            </select><span></span>
+            <input type="number" step="2" min="0" max="20" ng-model="vm.rowLimit" placeholder="rows" style="width:140px" />
+        </div>
+        <table class="table table-hover form-control-wrapper">
+            <caption>Patient observations</caption>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Date</th>
+                    <th>Subject</th>
+                    <th>Author</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="obsHistory in vm.archive | limitTo:vm.rowLimit | orderBy:vm.sortColumn">
+                    <td style="width:2%">{{$index + 1}}</td>
+                    <td>
+
+                        {{obsHistory.Date | jsonDate :'dd-M-yyyy H:mm' }}
+                    </td>
+                    <td>
+                        {{obsHistory.Subject}}
+                    </td>
+                    <td>
+                        {{obsHistory.Author}}
+                    </td>
+                    <td>
+                        <span ng-click="vm.GetObservation(obsHistory)" class="glyphicon glyphicon-info-sign" style="color:black"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+<div class="col-md-1"></div>
+

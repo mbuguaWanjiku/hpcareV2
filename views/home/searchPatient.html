@@ -1,0 +1,47 @@
+﻿<div class="col-md-1">
+</div>
+
+<div class="panel panel-widget col-md-10" ng-controller="homeController as vm">
+    <ul class="nofitications-dropdown pull-right" style="margin-top:-4%;margin-right:-3%;">
+
+        <li class="dropdown head-dpdn">
+            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-question-circle-o"></i></a>
+            <ul class="dropdown-menu anti-dropdown-menu">
+                <li>
+                    <div class="notification_header">
+                        <h3>Search Patient</h3>
+                    </div>
+                </li>
+                <li>
+                    <div class="modal-body" ng-controller="HelpController">
+                        <span class="task-desc">{{helpSearchPatient}}</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+
+    <div class="progressbar-heading grids-heading">
+        <h2>Search patient</h2>
+
+    </div>
+    <form name="searchPatientForm">
+        <div class="form-control-wrapper col-md-10">
+            <div class="col-md-10">
+                <input type="text" id="searchPatient" name="search" ng-model="vm.search" class="form-control floating-label"
+                       placeholder="SearchPatient" ng-minlength="2" ng-maxlength="15" required
+                       ng-class="{errorinput:submitted && searchPatientForm.searchPatientDescription.$invalid}">
+            </div>
+
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary" ng-click="vm.getDetails()" ng-disabled="searchPatientForm.$invalid">Search</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<div class="col-md-1">
+</div>

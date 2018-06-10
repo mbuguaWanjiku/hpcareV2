@@ -1,0 +1,85 @@
+﻿
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="panel panel-widget col-md-10">
+        <ul class="nofitications-dropdown pull-right" style="margin-top:-4%;margin-right:-3%;">
+
+            <li class="dropdown head-dpdn">
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-question-circle-o"></i></a>
+                <ul class="dropdown-menu anti-dropdown-menu">
+                    <li>
+                        <div class="notification_header">
+                            <h3>List MCDTs</h3>
+                        </div>
+                    </li>
+                    @*<li>
+                        <a href="#">
+                            <div class="task-info" ng-controller="HelpController">
+                                <span class="task-desc">{{helpListMdts}}</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </li>*@
+                </ul>
+            </li>
+        </ul>
+        <div class="col-md-12" ng-controller="searchController as vm">
+
+            <div class="row">
+                <div class="progressbar-heading grids-heading">
+                    <h2>Search users</h2>
+                </div>
+                <!--start filter-->
+                <div class="panel-widget">
+                    <span class="glyphicon glyphicon-filter"></span>
+
+                    <select ng-model="vm.sortColumn" class="dropDownOptions">
+                        <option value="UserName" selected="selected">UserName</option>
+                        <option value="Type">Type</option>
+                        <option value="User_identification">User ID</option>
+                        <option value="Email">Email</option>
+                        <option value="Address">Address</option>
+                    </select>
+                    <span></span><span></span><span></span>
+                    <input type="number" step="2" min="0" max="20" ng-model="vm.rowLimit" placeholder="rows" style="width:160px" />
+                    <span></span><span></span><span></span>
+                  <span class="glyphicon glyphicon-search"><input type="text"  ng-model="searchText" placeholder="Search User" style="width:160px" required /></span>
+                
+                 </div>
+                <!--End of filter-->
+                <div style="overflow:auto; height: 440px;">
+
+                    <div class="col-md-12">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>User ID</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="user in vm.users |filter:searchText | limitTo:vm.rowLimit | orderBy:vm.sortColumn">
+                                    
+                                    <td> {{user.Name}} </td>
+                                    <td> {{user.Type}} </td>
+                                    <td>{{user.User_identification}}</td>
+                                    <td> {{user.Email}} </td>
+                                    <td> {{user.Address}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                      
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-1"></div>
+</div>
+

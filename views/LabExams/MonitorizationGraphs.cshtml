@@ -1,0 +1,82 @@
+﻿<div class="col-md-1"></div>
+<div class="panel panel-widget col-md-10">
+    <div class="progressbar-heading grids-heading">
+        <h2>Monitorization</h2>
+    </div>
+
+    <div class="well col-md-3">
+
+            <div ng-controller="GraphsController">
+                <h4 class="title">Lab Exams Data</h4>
+                <select ng-model="LabExams" ng-options="x as x.description for x in mcdtList" class="form-control floating-label" id="selector1" placeholder="Lab Exam Type">
+                    <option value="value">Select Lab Exam</option>
+                </select>
+
+                <input type="text" placeholder="Start Date" id="date-start" class="form-control floating-label" />
+
+                <input type="text" placeholder="End Date" id="date-end" class="form-control floating-label" />
+
+                <button type="submit" class="btn btn-primary" ng-click="clickedElement()">Submit</button>
+
+            </div>
+    </div>
+
+    <div class="col-md-1"></div>
+
+    <div class="well col-md-8">
+        <div class="panel panel-widget">
+            <div class="chrt-page-grids" ng-controller="GraphsController">
+                <h4 class="title">Statistics </h4>
+                <canvas id="line" height="300" width="400" style="width: 400px; height: 300px;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script src="~/Scripts/material.min.js"></script>
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+<script src="~/Scripts/bootstrap-material-datetimepicker.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#date').bootstrapMaterialDatePicker
+        ({
+            time: false
+        });
+
+        $('#time').bootstrapMaterialDatePicker
+        ({
+            date: false,
+            shortTime: true,
+            format: 'HH:mm'
+        });
+
+        $('#date-format').bootstrapMaterialDatePicker
+        ({
+            format: 'dddd DD MMMM YYYY - HH:mm'
+        });
+        $('#date-fr').bootstrapMaterialDatePicker
+        ({
+            format: 'DD/MM/YYYY HH:mm',
+            lang: 'fr',
+            weekStart: 1,
+            cancelText: 'ANNULER'
+        });
+
+        $('#date-end').bootstrapMaterialDatePicker
+        ({
+            weekStart: 0, format: 'YYYY/MM/DD'
+        });
+        $('#date-start').bootstrapMaterialDatePicker
+        ({
+            weekStart: 0, format: 'YYYY/MM/DD'
+        }).on('change', function (e, date) {
+            $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+        });
+
+        $('#min-date').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', minDate: new Date() });
+
+        $.material.init()
+    });
+</script>

@@ -1,0 +1,47 @@
+﻿<div class="row">
+    <div class="col-md-1"></div>
+    <div class="panel panel-widget col-md-10">
+        <div class="progressbar-heading grids-heading">
+            <h2>My Medications History</h2>
+        </div>
+        <div class="col-md-12" ng-controller="PatientTemplateMedicationHistory" ng-init="Init()">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="panel-widget">
+                        <span class="glyphicon glyphicon-filter"></span>
+
+                        <select ng-model="sortColumn" class="dropDownOptions">
+                            <option value="StartDate" selected="selected">StartDate</option>
+                            <option value="EndDate">EndDate</option>
+                            <option value="Drugcategory">Drug Category</option>
+                            <option value="DrugName">Drug Name</option>
+                        </select><span></span>
+                        <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr><<th>No</th>
+                                <th>Drug Name</th>
+                                <th>Drug Category</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="MedicationHistoryVm in listMedications| limitTo:rowLimit | orderBy:sortColumn">
+                                <td style="width:2%">{{$index + 1}}</td>
+                                <td> {{MedicationHistoryVm.DrugName}}</td>
+                                <td> {{MedicationHistoryVm.Drugcategory}}</td>
+                                <td> {{MedicationHistoryVm.StartDate | jsonDate :'dd-MM-yyyy' }}</td>
+                                <td> {{MedicationHistoryVm.EndDate | jsonDate :'dd-MM-yyyy' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-1"></div>
+</div>

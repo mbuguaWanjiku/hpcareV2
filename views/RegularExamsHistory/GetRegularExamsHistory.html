@@ -1,0 +1,740 @@
+﻿<div class="col-md-1"></div>
+
+<div class="panel panel-widget col-md-10" ng-controller="RegularExamHistoryController">
+    <ul class="nofitications-dropdown pull-right" style="margin-top:-4%;margin-right:-3%;">
+
+        <li class="dropdown head-dpdn">
+            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-question-circle-o"></i></a>
+            <ul class="dropdown-menu anti-dropdown-menu">
+                <li>
+                    <div class="notification_header">
+                        <h3>Regular Exam History</h3>
+                    </div>
+                </li>
+                <li>
+                    <div class="task-info" ng-controller="HelpController">
+                        <span class="task-desc">{{helpGetRegularExamsHistory}}</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div class="progressbar-heading grids-heading">
+        <h2>Regular Lab Exams results</h2>
+    </div>
+
+    <div class="inbox-row widget-shadow">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="true" aria-controls="collapsenine">
+
+            <div class="mail active"><p ng-click="initKft()">KFT</p></div>
+        </a>
+        <div class="mail-right">
+            <div class="dropdown">
+                <a href="#" data-toggle="dropdown" aria-expanded="false">
+                    <p><i class="fa fa-ellipsis-v mail-icon  "></i></p>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="clearfix"> </div>
+
+        <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingnine">
+
+            <div class="mail-body">
+
+                <div class="panel-widget">
+                    <span class="glyphicon glyphicon-filter"></span>
+
+                    <select ng-model="sortColumn" class="dropDownOptions">
+                        <option value="MCDT_date" selected="selected">Prescription Date</option>
+                        <option value="LabExam_data_in">lab in date</option>
+                        <option value="LabExam_data_out">lab out date</option>
+                        <option value="Staff_User_id">Staff Name</option>
+                    </select><span></span>
+                    <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
+                </div>
+                <table class="table table-hover">
+                    <caption>KFT</caption>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>MCDT Date</th>
+                            <th>Lab in Date</th>
+                            <th>Lab out Date</th>
+                            <th>Staff</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="regularExamKFT in regularExamHistoryKFT | limitTo:rowLimit | orderBy:sortColumn">
+                            <td style="width:2%">{{$index + 1}}</td>
+                            <td>
+                                {{regularExamKFT.MCDT_date | jsonDate :'dd-M-yyyy '  == "10-10-1920" ? "" : (regularExamKFT.MCDT_date | jsonDate: 'dd-MM-yyyy')}}
+                            </td>
+
+                            <td>
+                                {{regularExamKFT.LabExam_data_in | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExamKFT.LabExam_data_out | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExamKFT.Staff_User_id}}
+                            </td>
+
+                            <td>
+                                <div class="mail-right">
+                                    <div class="dropdown">
+                                        <a href="#" data-toggle="dropdown" aria-expanded="false">
+                                            <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                                        </a>
+                                        <ul class="dropdown-menu float-right hover">
+                                            <li ng-click="showText(regularExamKFT)">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion">
+                                                    <i class="glyphicon glyphicon-pencil">Text</i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart" ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryKFT)">Graph</i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart" ng-click="showGraphEspecific(rowLimit,sortColumn, regularExamHistoryKFT)">Control Line Graph</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!----END KFT-->
+    <div class="inbox-row widget-shadow">
+
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="true" aria-controls="collapseTen">
+            <div class="mail"><p ng-click="initLft()">LFT</p></div>
+        </a>
+        <div class="mail-right">
+            <div class="dropdown">
+                <a href="#" data-toggle="dropdown" aria-expanded="false">
+                    <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                </a>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingten">
+            <div class="mail-body">
+                <div class="panel-widget">
+                    <span class="glyphicon glyphicon-filter"></span>
+
+                    <select ng-model="sortColumn" class="dropDownOptions">
+                        <option value="MCDT_date" selected="selected">Prescription Date</option>
+                        <option value="LabExam_data_in">lab in date</option>
+                        <option value="LabExam_data_out">lab out date</option>
+                        <option value="Staff_User_id">Staff Name</option>
+                    </select><span></span>
+                    <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
+                </div>
+                <table class="table table-hover">
+                    <caption>LFT</caption>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>MCDT Date</th>
+                            <th>Lab in Date</th>
+                            <th>Lab out Date</th>
+                            <th>Staff</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="regularExam in regularExamHistoryLFT | limitTo:rowLimit | orderBy:sortColumn">
+                            <td style="width:2%">{{$index + 1}}</td>
+                            <td>
+                                {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.LabExam_data_in | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.LabExam_data_out | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.Staff_User_id}}
+                            </td>
+                            <td>
+                                <div class="mail-right">
+                                    <div class="dropdown">
+                                        <a href="#" data-toggle="dropdown" aria-expanded="false">
+                                            <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                                        </a>
+                                        <ul class="dropdown-menu float-right">
+                                            <li ng-click="showText(regularExam)">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion">
+                                                    <i class="glyphicon glyphicon-pencil">Text</i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart " ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryLFT)">Graph</i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart " ng-click="showGraphEspecific(rowLimit,sortColumn, regularExamHistoryLFT)">Control Line Graph</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!----------end lft-->
+    <div class="inbox-row widget-shadow">
+
+
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse11" aria-expanded="true" aria-controls="collapse11">
+            <div class="mail"><p ng-click="initLymp()">Lymphocytes Subsets </p></div>
+        </a>
+        <div class="mail-right">
+            <div class="dropdown">
+                <a href="#" data-toggle="dropdown" aria-expanded="false">
+                    <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                </a>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <div id="collapse11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading11">
+            <div class="mail-body">
+
+                <div class="panel-widget">
+                    <span class="glyphicon glyphicon-filter"></span>
+
+                    <select ng-model="sortColumn" class="dropDownOptions">
+                        <option value="MCDT_date" selected="selected">Prescription Date</option>
+                        <option value="LabExam_data_in">lab in date</option>
+                        <option value="LabExam_data_out">lab out date</option>
+                        <option value="Staff_User_id">Staff Name</option>
+                    </select><span></span>
+                    <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
+                </div>
+                <table class="table table-hover">
+                    <caption>Lymphocytes Subsets</caption>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>MCDT Date</th>
+                            <th>Lab in Date</th>
+                            <th>Lab out Date</th>
+                            <th>Staff</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="regularExam in regularExamHistoryLymphocytesSubsets | limitTo:rowLimit | orderBy:sortColumn">
+                            <td style="width:2%">{{$index + 1}}</td>
+                            <td>
+                                {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.LabExam_data_in | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.LabExam_data_out | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.Staff_User_id}}
+                            </td>
+                            <td>
+                                <div class="mail-right">
+                                    <div class="dropdown">
+                                        <a href="#" data-toggle="dropdown" aria-expanded="false">
+                                            <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                                        </a>
+                                        <ul class="dropdown-menu float-right">
+                                            <li ng-click="showText(regularExam)">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion">
+                                                    <i class="glyphicon glyphicon-pencil ">Text</i>
+
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart " ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryLymphocytesSubsets)">Graph</i>
+
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart " ng-click="showGraphEspecific(rowLimit,sortColumn, regularExamHistoryLymphocytesSubsets)">Control Line Graph</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <!------end lypmhocytes-->
+    <div class="inbox-row widget-shadow">
+
+
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse12" aria-expanded="true" aria-controls="collapse12">
+            <div class="mail"><p ng-click="initPlatelets()">Platelets Count</p></div>
+        </a>
+        <div class="mail-right">
+            <div class="dropdown">
+                <a href="#" data-toggle="dropdown" aria-expanded="false">
+                    <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                </a>
+
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <div id="collapse12" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading12">
+            <div class="mail-body">
+
+                <div class="panel-widget">
+                    <span class="glyphicon glyphicon-filter"></span>
+
+                    <select ng-model="sortColumn" class="dropDownOptions">
+                        <option value="MCDT_date" selected>Prescription Date</option>
+                        <option value="LabExam_data_in">lab in date</option>
+                        <option value="LabExam_data_out">lab out date</option>
+                        <option value="Staff_User_id">Staff Name</option>
+                    </select><span></span>
+                    <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
+                </div>
+                <table class="table table-hover">
+                    <caption>Platelets Count</caption>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>MCDT Date</th>
+                            <th>Lab in Date</th>
+                            <th>Lab out Date</th>
+                            <th>Staff</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="regularExam in regularExamHistoryPlateletsCount | limitTo:rowLimit | orderBy:sortColumn">
+                            <td style="width:2%">{{$index + 1}}</td>
+                            <td>
+                                {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.LabExam_data_in | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.LabExam_data_out | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.Staff_User_id}}
+                            </td>
+                            <td>
+                                <div class="mail-right">
+                                    <div class="dropdown">
+                                        <a href="#" data-toggle="dropdown" aria-expanded="false">
+                                            <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                                        </a>
+                                        <ul class="dropdown-menu float-right">
+                                            <li ng-click="showText(regularExam)">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion">
+                                                    <i class="glyphicon glyphicon-pencil ">Text</i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart " ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryPlateletsCount)">Graph</i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart " ng-click="showGraphEspecific(rowLimit,sortColumn, regularExamHistoryPlateletsCount)">Control Line Graph</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <!------eND PLATELETS CONT-->
+
+    <div class="inbox-row widget-shadow">
+
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse13" aria-expanded="true" aria-controls="collapse13">
+            <div class="mail"><p ng-click="initRbcI()"> RBC Indices </p></div>
+        </a>
+        <div class="mail-right">
+            <div class="dropdown">
+                <a href="#" data-toggle="dropdown" aria-expanded="false">
+                    <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                </a>
+
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <div id="collapse13" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading13">
+
+            <div class="mail-body">
+                <div class="panel-widget">
+                    <span class="glyphicon glyphicon-filter"></span>
+
+                    <select ng-model="sortColumn" class="dropDownOptions">
+                        <option value="MCDT_date" selected>Prescription Date</option>
+                        <option value="LabExam_data_in">lab in date</option>
+                        <option value="LabExam_data_out">lab out date</option>
+                        <option value="Staff_User_id">Staff Name</option>
+                    </select><span></span>
+                    <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
+                </div>
+                <table class="table table-hover">
+                    <caption>RBC Indices</caption>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>MCDT Date</th>
+                            <th>Lab in Date</th>
+                            <th>Lab out Date</th>
+                            <th>Staff</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="regularExam in regularExamHistoryRBCIndices | limitTo:rowLimit | orderBy:sortColumn">
+                            <td style="width:2%">{{$index + 1}}</td>
+                            <td>
+                                {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.LabExam_data_in | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.LabExam_data_out | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.Staff_User_id}}
+                            </td>
+                            <td>
+                                <div class="mail-right">
+                                    <div class="dropdown">
+                                        <a href="#" data-toggle="dropdown" aria-expanded="false">
+                                            <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                                        </a>
+                                        <ul class="dropdown-menu float-right">
+                                            <li ng-click="showText(regularExam)">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion">
+                                                    <i class="glyphicon glyphicon-pencil ">Text</i>
+
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart " ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryRBCIndices)">Graph</i>
+
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart " ng-click="showGraphEspecific(rowLimit,sortColumn, regularExamHistoryRBCIndices)">Control Line Graph</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!----END RBCS INDICE-->
+    <div class="inbox-row widget-shadow">
+
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse14" aria-expanded="true" aria-controls="collapse14">
+            <div class="mail"><p ng-click="initRbcs()">RBCS</p></div>
+        </a>
+        <div class="mail-right">
+            <div class="dropdown">
+                <a href="#" data-toggle="dropdown" aria-expanded="false">
+                    <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                </a>
+
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <div id="collapse14" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading14">
+            <div class="mail-body">
+
+                <div class="panel-widget">
+                    <span class="glyphicon glyphicon-filter"></span>
+
+                    <select ng-model="sortColumn" class="dropDownOptions">
+                        <option value="MCDT_date" selected>Prescription Date</option>
+                        <option value="LabExam_data_in">lab in date</option>
+                        <option value="LabExam_data_out">lab out date</option>
+                        <option value="Staff_User_id">Staff Name</option>
+                    </select><span></span>
+                    <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
+                </div>
+                <table class="table table-hover">
+                    <caption>RBCS</caption>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>MCDT Date</th>
+                            <th>Lab in Date</th>
+                            <th>Lab out Date</th>
+                            <th>Staff</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="regularExam in regularExamHistoryRBCS | limitTo:rowLimit | orderBy:sortColumn">
+                            <td style="width:2%">{{$index + 1}}</td>
+                            <td>
+                                {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.LabExam_data_in | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.LabExam_data_out | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.Staff_User_id}}
+                            </td>
+                            <td>
+                                <div class="mail-right">
+                                    <div class="dropdown">
+                                        <a href="#" data-toggle="dropdown" aria-expanded="false">
+                                            <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                                        </a>
+                                        <ul class="dropdown-menu float-right">
+                                            <li ng-click="showText(regularExam)">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion">
+                                                    <i class="glyphicon glyphicon-pencil ">Text</i>
+
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart " ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryRBCS)">Graph</i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart " ng-click="showGraphEspecific(rowLimit,sortColumn, regularExamHistoryRBCS)">Control Line Graph</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!---END RBCS-->
+    <div class="inbox-row widget-shadow">
+
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse15" aria-expanded="true" aria-controls="collapse15">
+            <div class="mail"><p ng-click="initWbcs()">WBCS</p></div>
+        </a>
+        <div class="mail-right">
+            <div class="dropdown">
+                <a href="#" data-toggle="dropdown" aria-expanded="false">
+                    <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                </a>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <div id="collapse15" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading15">
+            <div class="mail-body">
+                <div class="panel-widget">
+                    <span class="glyphicon glyphicon-filter"></span>
+
+                    <select ng-model="sortColumn" class="dropDownOptions">
+                        <option value="MCDT_date" selected>Prescription Date</option>
+                        <option value="LabExam_data_in">lab in date</option>
+                        <option value="LabExam_data_out">lab out date</option>
+                        <option value="Staff_User_id">Staff Name</option>
+                    </select><span></span>
+                    <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
+                </div>
+                <table class="table table-hover">
+                    <caption>WBCS</caption>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>MCDT Date</th>
+                            <th>Lab in Date</th>
+                            <th>Lab out Date</th>
+                            <th>Staff</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="regularExam in regularExamHistoryWBCS | limitTo:rowLimit | orderBy:sortColumn">
+                            <td style="width:2%">{{$index + 1}}</td>
+                            <td>
+                                {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.LabExam_data_in | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.LabExam_data_out | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.Staff_User_id}}
+                            </td>
+                            <td>
+                                <div class="mail-right">
+                                    <div class="dropdown">
+                                        <a href="#" data-toggle="dropdown" aria-expanded="false">
+                                            <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                                        </a>
+                                        <ul class="dropdown-menu float-right">
+                                            <li ng-click="showText(regularExam)">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion">
+                                                    <i class="glyphicon glyphicon-pencil ">Text</i>
+
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart " ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryWBCS)">Graph</i>
+
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart " ng-click="showGraphEspecific(rowLimit,sortColumn, regularExamHistoryWBCS)">Control Line Graph</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--------END WBCS-->
+    <div class="inbox-row widget-shadow">
+
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse16" aria-expanded="true" aria-controls="collapse16">
+            <div class="mail"><p ng-click="initViral()">Viral Load</p></div>
+        </a>
+        <div class="mail-right">
+            <div class="dropdown">
+                <a href="#" data-toggle="dropdown" aria-expanded="false">
+                    <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                </a>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <div id="collapse16" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading16">
+            <div class="mail-body">
+
+                <div class="panel-widget">
+                    <span class="glyphicon glyphicon-filter"></span>
+
+                    <select ng-model="sortColumn" class="dropDownOptions">
+                        <option value="MCDT_date" selected>Prescription Date</option>
+                        <option value="LabExam_data_in">lab in date</option>
+                        <option value="LabExam_data_out">lab out date</option>
+                        <option value="Staff_User_id">Staff Name</option>
+                    </select><span></span>
+                    <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
+                </div>
+                <table class="table table-hover">
+                    <caption>Viral Load</caption>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>MCDT Date</th>
+                            <th>Lab in Date</th>
+                            <th>Lab out Date</th>
+                            <th>Staff</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="regularExam in regularExamHistoryViralLoad | limitTo:rowLimit | orderBy:sortColumn">
+                            <td style="width:2%">{{$index + 1}}</td>
+                            <td>
+                                {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.LabExam_data_in | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.LabExam_data_out | jsonDate :'dd-M-yyyy H:mm' }}
+                            </td>
+                            <td>
+                                {{regularExam.Staff_User_id}}
+                            </td>
+                            <td>
+                                <div class="mail-right">
+                                    <div class="dropdown">
+                                        <a href="#" data-toggle="dropdown" aria-expanded="false">
+                                            <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                                        </a>
+                                        <ul class="dropdown-menu float-right">
+                                            <li ng-click="showText(regularExam)">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion">
+                                                    <i class="glyphicon glyphicon-pencil ">Text</i>
+
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart " ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryViralLoad)">Graph</i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-line-chart " ng-click="showGraphEspecific(rowLimit,sortColumn, regularExamHistoryViralLoad)">Control Line Graph</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!---END VIRAL LOAD-->
+
+            </div>
+        </div>
+    </div>
+</div>

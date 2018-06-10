@@ -1,0 +1,18 @@
+﻿
+<div class="modal-header">
+    <span us-spinner="{radius:30, width:8, length: 16}"></span>
+    <h3 class="modal-title">Intervention action occurred!</h3>
+</div>
+<div class="modal-body">
+    <span class="glyphicon glyphicon-ok-sign " style="color:dodgerblue"></span>
+    <div class="alert alert-warning">
+        <strong>success!</strong>
+        <p>
+            <pre>{{vm.success}}</pre>
+        </p>
+
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="$close()">OK</button>
+</div>

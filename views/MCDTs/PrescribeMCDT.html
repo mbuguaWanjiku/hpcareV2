@@ -1,0 +1,105 @@
+﻿<div class="col-md-1"></div>
+<fieldset ng-controller="PatientStatusController" ng-disabled="!PatientStatus">
+    <div class="panel panel-widget col-md-11">
+        <ul class="nofitications-dropdown pull-right" style="margin-top:-4%;margin-right:-3%;">
+
+            <li class="dropdown head-dpdn">
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-question-circle-o"></i></a>
+                <ul class="dropdown-menu anti-dropdown-menu">
+                    <li>
+                        <div class="notification_header">
+                            <h3>Prescribe MCDT</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="modal-body" ng-controller="HelpController">
+                            <span class="task-desc">{{helpPrescribeMcdt}}</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="progressbar-heading grids-heading">
+            <h2>MCDT Prescription</h2>
+        </div>
+
+        <div class="well col-md-3" ng-controller="MCDTController">
+
+            <div id="mcdtDropDown" class="form-control-wrapper dropdown dropdown-toggle">
+
+                <label>Add MCDT to Pool</label><br />
+
+                <select id="MCDTid_level1"
+                        class="form-control"
+                        name="MCDTdropdown1"
+                        ng-model="Mcdt"
+                        ng-options="cg as cg.desc for cg in McdtListLevel1"
+                        ng-change="processLevel1()" required>
+                    <option value="" selected="selected">Choose</option>
+                </select>
+                <br />
+
+                <select id="MCDTid_level2"
+                        class="form-control"
+                        name="MCDTdropdown2"
+                        ng-model="Mcdt"
+                        ng-hide="Mcdt.desc == null"
+                        ng-options="cg as cg.desc for cg in McdtListLevel2"
+                        ng-change="processLevel2()" required>
+                    <option value="" selected="selected">Choose</option>
+
+                </select>
+                <br />
+
+                <select id="MCDTid_level3"
+                        class="form-control"
+                        name="MCDTdropdown3"
+                        ng-model="Mcdt"
+                        ng-hide="Mcdt.desc == null"
+                        ng-options="cg as cg.desc for cg in McdtListLevel3"
+                        ng-change="processLevel3()" required>
+                    <option value="" selected="selected">Choose</option>
+                </select>
+                <br />
+
+            </div>
+        </div>
+
+        <div class="col-md-1"></div>
+
+        <div class="col-md-8" ng-controller="MCDTController">
+            <table class="table table-hover">
+                <caption>Prescribed MCDTS Pool</caption>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>MCDT Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{message}}
+                    <tr ng-repeat="mcdt in prescribedMCDTS">
+                        <td>
+                            {{mcdt.cat}}
+                        </td>
+
+                        <td>
+                            {{mcdt.desc}}
+                        </td>
+                        <td>
+                            <span ng-click="deleteMCDT(mcdt)" class="glyphicon glyphicon-trash" style="color:black"></span>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" ng-click="saveMcdts()">Save To Database</button>
+            </div>
+        </div>
+
+    </div>
+</fieldset>

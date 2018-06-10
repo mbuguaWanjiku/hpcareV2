@@ -1,0 +1,67 @@
+﻿@model DataLayer.Entities.MCDT.LabExams
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/LabTec.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LabExams</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MCDT_units)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MCDT_units)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MCDT_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MCDT_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MCDT_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MCDT_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LabExams_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LabExams_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LabExam_data_in)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LabExam_data_in)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LabExam_date_out)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LabExam_date_out)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MCDT_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

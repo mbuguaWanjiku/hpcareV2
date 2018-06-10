@@ -1,0 +1,51 @@
+﻿
+<div class="panel panel-widget col-md-10" >
+    <span us-spinner="{radius:30, width:8, length: 16}"></span>
+    <ul class="nofitications-dropdown pull-right " style="margin-top:-4%;margin-right:-3%;">
+
+        <li class="dropdown head-dpdn" ng-controller="HelpController">
+            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-question-circle-o"></i></a>
+            <ul class="dropdown-menu anti-dropdown-menu">
+                <li>
+                    <div class="notification_header">
+                        <h3>Search</h3>
+                    </div>
+                </li>
+                <li>
+                    <span>{{helpSearchPatient}}</span>
+                    <!--<a href="#">
+                        <div class="task-info" ng-controller="HelpController">
+                            <span class="task-desc">{{helpSearchPatient}}</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>-->
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+
+    <div class="progressbar-heading grids-heading">
+        <h2>Search patient</h2>
+     
+    <form name="searchPatientForm" >
+        <div class="form-control-wrapper col-md-10">
+            <p>search=4_5</p>
+            <!--<div class="col-md-10">-->
+         
+                <div  ng-show="patientExist"  style="color:blue;font-style:oblique"><label>invalid data !!!Patient don't exist</label></div>
+                <input type="text" id="searchPatient" name="search" ng-model="vm.search" class="form-control floating-label"
+                       placeholder="SearchPatient" ng-minlength="2" ng-maxlength="15" required
+                     >
+            
+                <br/><br/>
+          
+                <button id="btnSubmit"type="submit" class="btn btn-primary" ng-click="vm.getDetails();$close()" ng-disabled="">Search</button>
+            <!--</div>-->
+        </div>
+    </form>
+
+</div>
+
+
+</div>

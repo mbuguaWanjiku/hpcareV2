@@ -1,0 +1,65 @@
+﻿@using PresentationLayer.Models
+@model LoginViewModel
+@*@{Layout = "~/Views/Shared/_LayoutLogin.cshtml";}
+@{
+    ViewBag.Title = "Log in";
+}*@
+<div class="login-body">
+    <div class="login-heading">
+        <h1>Login</h1>
+    </div>
+
+    <div class="login-info">
+
+        @using(Html.BeginForm("Login", "Account", new {
+            ReturnUrl = ViewBag.ReturnUrl
+        }, FormMethod.Post, new {
+            @class = "login-info",
+            role = "form"
+        })) {
+
+            @Html.AntiForgeryToken()
+            @Html.TextBoxFor(m => m.UserName, new {
+           @class = "user",
+           placeholder = "Email",
+           required = "",
+           name = "email"
+       })
+            @Html.ValidationMessageFor(m => m.UserName, "", new {
+           @class = "text-danger"
+       })
+
+            @Html.PasswordFor(m => m.Password, new {
+           @class = "lock",
+           placeholder = "Password",
+           name = "password"
+       })
+            @Html.ValidationMessageFor(m => m.Password, "", new {
+           @class = "text-danger"
+       })
+
+        
+
+            <div class="forgot-top-grids">
+                <div class="forgot-grid">
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe)
+                </div>
+                <div class="forgot">
+                    <a href="#">Forgot password?</a>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+
+            <input type="submit" value="Log in" name="Sign In">
+
+            <div class="go-back login-go-back">
+                <a href="../index.html">Go To Home</a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

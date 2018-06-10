@@ -1,0 +1,61 @@
+﻿
+<div class="col-md-1"></div>
+<div class="panel panel-widget col-md-10">
+    <div class="progressbar-heading grids-heading">
+        <h2>Patient Exam List</h2>
+    </div>
+    <div class="tables">
+        <table class="table table-hover" >
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Patient Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("MCDT Type")
+                    </th>
+                    <th>
+                        @Html.DisplayName("MCDT Date")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Lab Date In")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Lab Date Out")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(int i = 0; i < ViewBag.examsList.Count; i++) {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("PatientExams", "LabExams", new {
+                                    id = ViewBag.user[i].User_id
+                                })">@ViewBag.user[i].Name</a>
+
+                            @*@Html.ActionLink((string)@ViewBag.user[i].Name, "PatientExams", new {
+                         id = ViewBag.user[i].User_id
+                     })*@
+                        </td>
+
+                        <td>
+                            @ViewBag.examsList[i].MCDT_type
+                        </td>
+                        <td>
+                            @ViewBag.examsList[i].MCDT_date
+                        </td>
+                        <td>
+                            @ViewBag.examsList[i].LabExam_data_in
+                        </td>
+                        <td>
+                            @ViewBag.examsList[i].LabExam_date_out
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="col-md-1"></div>
+

@@ -1,0 +1,115 @@
+﻿@model DataLayer.Entities.MCDTEntities.ViralLoad
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Add RBCIndices Lab Exam Results</h4>
+</div>
+<div class="modal-body">
+    @using(Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-body">
+          
+            @Html.ValidationSummary(true, "", new {
+           @class = "text-danger"
+       })
+            @Html.HiddenFor(model => model.MCDT_ID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MCDT_units, htmlAttributes: new {
+               @class = "control-label col-md-2"
+           })
+                    @Html.EnumDropDownListFor(model => model.MCDT_units, htmlAttributes: new {
+                   @class = "form-control", @id = "disabledinput"
+               })
+                    @Html.ValidationMessageFor(model => model.MCDT_units, "", new {
+                   @class = "text-danger"
+               })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MCDT_type, htmlAttributes: new {
+               @class = "control-label col-md-2"
+           })
+                    @Html.EnumDropDownListFor(model => model.MCDT_type, htmlAttributes: new {
+                   @class = "form-control", @id = "disabledinput"
+               })
+                    @Html.ValidationMessageFor(model => model.MCDT_type, "", new {
+                   @class = "text-danger"
+               })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MCDT_date, htmlAttributes: new {
+               @class = "control-label col-md-2"
+           })
+                    @Html.EditorFor(model => model.MCDT_date, new {
+                   htmlAttributes = new {
+                       @class = "form-control", @id = "disabledinput"
+                   }
+               })
+                    @Html.ValidationMessageFor(model => model.MCDT_date, "", new {
+                   @class = "text-danger"
+               })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LabExam_data_in, htmlAttributes: new {
+               @class = "control-label col-md-2"
+           })
+                    @Html.EditorFor(model => model.LabExam_data_in, new {
+                   htmlAttributes = new {
+                       @class = "form-control", @id = "disabledinput"
+                   }
+               })
+                    @Html.ValidationMessageFor(model => model.LabExam_data_in, "", new {
+                   @class = "text-danger"
+               })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LabExam_date_out, htmlAttributes: new {
+               @class = "control-label col-md-2"
+           })
+                    @Html.EditorFor(model => model.LabExam_date_out, new {
+                   htmlAttributes = new {
+                       @class = "form-control", @id = "disabledinput"
+                   }
+               })
+                    @Html.ValidationMessageFor(model => model.LabExam_date_out, "", new {
+                   @class = "text-danger"
+               })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.value, htmlAttributes: new {
+               @class = "control-label col-md-2"
+           })
+                    @Html.EditorFor(model => model.value, new {
+                   htmlAttributes = new {
+                       @class = "form-control"
+                   }
+               })
+                    @Html.ValidationMessageFor(model => model.value, "", new {
+                   @class = "text-danger"
+               })
+            </div>
+
+            <div class="modal-footer">
+                <input type="submit" value="Save" class="btn btn-primary" id="button" onclick="goBack();" />
+            </div>
+        </div>
+    }
+</div>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts_Ajax/bootstrap.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //allow validation framework to parse DOM
+        $.validator.unobtrusive.parse('form');
+    });
+
+    function goBack() {
+        window.history.go("../LabExams/listpatientlabexams");
+    }
+
+</script>

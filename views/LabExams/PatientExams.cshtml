@@ -1,0 +1,117 @@
+﻿
+<div class="col-md-1"></div>
+<div class="panel panel-widget col-md-10">
+    <div class="progressbar-heading grids-heading">
+        <h2>Exams of @ViewBag.patient</h2>
+    </div>
+    <div class="tables">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        @Html.DisplayName("MCDT Type")
+                    </th>
+                    <th>
+                        @Html.DisplayName("MCDT Date")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Lab Date In")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Lab Date Out")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(int i = 0; i < ViewBag.patientExams.Count; i++) {
+                    <tr>
+                        <td>
+                            @Html.ActionLink("Add Results", "GetCreateView", new {
+                               id = ViewBag.ids[i]
+                           },
+                       new {
+                           @class = "btnData"
+                       })
+                        </td>
+                        <td>
+                            @ViewBag.patientExams[i].MCDT_type
+                        </td>
+                        <td>
+                            @ViewBag.patientExams[i].MCDT_date
+                        </td>
+                        <td>
+                            @ViewBag.patientExams[i].LabExam_data_in
+                        </td>
+                        <td>
+                            @ViewBag.patientExams[i].LabExam_date_out
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="col-md-1"></div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="modalContent">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(function () {
+
+            $('.btnData').on('click', function (e) {
+                //using get sample....  param's object...
+                $.get(this.href, { id: 1 }, function (result) {
+                    $('#modalContent').html(result);
+                    $('#myModal').modal('show');
+
+                    $('form').submit(function (e) {
+                        e.preventDefault();
+                        if (!$(this).valid()) {
+                            return false;
+                        }
+
+                        $.ajax({
+                            url: this.action,
+                            type: this.method,
+                            data: $(this).serialize()
+                        }).done(function (result) {
+                            if (result.success) {
+                                //alert('done');
+                                $('#myModal').modal('hide');
+                                //do the happy path...
+                            } else {
+                                //$('form', this).html(result);
+                                //model state errors....
+                                //http://debapk.blogspot.com/2011/11/how-to-render-model-validation-error-on.html
+                                $.each(result.errors, function (key, val) {
+                                    var container = $('span[data-valmsg-for="' + key + '"]');
+                                    container.removeClass("field-validation-valid").addClass("field-validation-error");
+                                    container.html(val[val.length - 1].ErrorMessage);
+                                });
+
+                            }
+                        }).fail(function (xhr, status, error) {
+                            //alert('failed');
+                        });
+                    });
+                });
+
+                return false;
+            });
+
+        });
+
+    </script>
+}
+

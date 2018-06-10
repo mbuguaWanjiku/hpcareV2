@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>HPCare</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <base href="/Hpcare/" />
+
+
+  <script type="application/x-javascript">
+    addEventListener("load", function() {
+      setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+      window.scrollTo(0, 1);
+    }
+  </script>
+
+  <link rel="shortcut icon" type="image/ico" href="../Images/favicon.ico">
+  <!--Angular scripts-->
+
+
+
+  <script src="Scripts/angular.js"></script>
+
+  <script src="Scripts/angular-animate.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.4/interact.min.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.0/ui-bootstrap-tpls.min.js"></script>
+  <script src="//cdn.rawgit.com/jkbrzt/rrule/v2.1.0/lib/rrule.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-bootstrap-colorpicker/3.0.25/js/bootstrap-colorpicker-module.min.js"></script>
+  <script src="//mattlewis92.github.io/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="//mattlewis92.github.io/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
+
+
+  <script src="/Scripts/angular-ui-router.js"></script>
+  <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
+  <script src="../Scripts/angular-spinner.js"></script>
+  <script src="../Content/Angular/Modules/SpinnerModule.js"></script>
+  <!--
+    <script src="../Content/Angular/Modules/MainModule.js"></script>
+    <script src="../Content/Angular/Modules/NavigationConfiguration.js"></script>
+    <script src="../Content/Angular/Services/DialoguesFactory.js"></script>
+    <script src="../Content/Angular/Services/DiagnosisHistoryService.js"></script>
+    <script src="../Content/Angular/controllers/DiagnosisClassificationController.js"></script>
+    <script src="../Content/Angular/controllers/DiagnosisHistoryController.js"></script>
+
+    <script src="../Content/Angular/controllers/MedicationController.js"></script>
+    <script src="../Content/Angular/Services/MedicationHistoryFactory.js"></script>
+    <script src="../Content/Angular/controllers/MedicationHistoryController.js"></script>
+
+    <script src="../Content/Angular/Services/SearchPatientService.js"></script>
+    <script src="../Content/Angular/controllers/HomeController.js"></script>
+
+    <script src="../Content/Angular/controllers/MCDTController.js"></script>
+    <script src="../Content/Angular/Services/DialoguesFactory.js"></script>
+    <script src="../Content/TreatmentPlan/indexController.js"></script>
+    <script src="../Content/TreatmentPlan/TreatmentPlanMedController.js"></script>
+
+    <script src="../Content/Angular/Services/MCDRegularExamFactory.js"></script>
+    <script src="../Content/Angular/Services/RegularLabResultsModalFactory.js"></script>
+    <script src="../Content/Angular/controllers/MCDTHistoryController.js"></script>
+
+
+    <script src="../Content/Angular/controllers/PatientInformationsController.js"></script>
+    <script src="../Content/Angular/controllers/StaffController.js"></script>
+    <script src="../Content/Angular/controllers/PatientController.js"></script>
+
+    <script src="../Content/Angular/controllers/HelpController.js"></script>
+
+
+    <script src="../Content/Angular/Services/ObservationsFactory.js"></script>
+    <script src="../Content/Angular/controllers/ObservationsController.js"></script>
+
+    <script src="../Content/Angular/controllers/AllergiesController.js"></script>
+    <script src="../Content/Angular/controllers/PatientStatusController.js"></script>
+    <script src="../Content/Angular/controllers/LogOutController.js"></script>
+
+
+    <script src="../Content/Angular/Services/SharedPropertiesService.js"></script>
+
+-->
+  <!-- Bootstrap Core CSS -->
+  <link href="/Content/bootstrap.css" rel='stylesheet' type='text/css' />
+  <!-- Custom CSS -->
+  <link href="/Content/style.css" rel='stylesheet' type='text/css' />
+  <!-- font CSS -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- font-awesome icons -->
+  <link href="/Content/font-awesome.css" rel="stylesheet">
+  <!-- //font-awesome icons -->
+  <!-- chart -->
+  <script src="../Scripts/Graphs/Chart.js"></script>
+  <!-- //chart -->
+  <!-- js-->
+  <script src="/Scripts/jquery-1.11.1.min.js"></script>
+  <script src="/Scripts/modernizr.custom.js"></script>
+  <!--webfonts-->
+  <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <!--//webfonts-->
+  <!--animate-->
+  <link href="/Content/animate.css" rel="stylesheet" type="text/css" media="all">
+  <script src="/Scripts/wow.min.js"></script>
+  <script>
+    new WOW().init();
+  </script>
+  <!--//end-animate-->
+  <!-- Metis Menu -->
+  <script src="/Scripts/metisMenu.min.js"></script>
+  <script src="/Scripts/custom.js"></script>
+  <link href="/Scripts/custom.js" rel="stylesheet">
+  <!--//Metis Menu -->
+  <!-- move-chart -->
+  <link rel="stylesheet" href="/Content/atlas.css" type="text/css" charset="utf-8">
+  <!-- //move-chart -->
+  <!-- date-picker -->
+  <link href="../Content/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+  <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- //date-picker -->
+</head>
+
+<body class="cbp-spmenu-push" data-ng-app="myApp">
+  <div class="main-content">
+    <!--left-fixed -navigation-->
+    <div class="sidebar" role="navigation">
+      <div class="navbar-collapse">
+        <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right dev-page-sidebar mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" id="cbp-spmenu-s1">
+          <div class="scrollbar scrollbar1">
+            <ul class="nav" id="side-menu">
+
+              <li>
+                <div ui-sref="searchPatient"> <a href="#" class="active" style="margin-left:18px;"><i class="fa fa-home nav_icon"></i>Search Patient</a></div>
+              </li>
+
+              <li>
+                <a href="#"><i class="fa fa-heartbeat nav_icon"></i>MCDT<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                  <li>
+                    <div ui-sref="prescribeMCDT"> <a href="#" style="margin-left:50px;">Prescription</a></div>
+                  </li>
+
+                  <li>
+                    <div ui-sref="regularExamsHistory"> <a href="#" style="margin-left:50px;">Regular Exams History</a></div>
+                  </li>
+
+                  <li>
+                    <div ui-sref="createTreatmentPlan"> <a href="#" style="margin-left:50px;">Configure Treatment Plan</a></div>
+                  </li>
+
+                  <li>
+                    <div ui-sref="consultTreatmentPlan"> <a href="#" style="margin-left:50px;">Treatment Plan</a></div>
+                  </li>
+                </ul>
+                <!-- /nav-second-level -->
+              </li>
+              <li>
+                <a href="#" class="elements"><i class="fa fa-stethoscope nav_icon"></i>&nbsp;Diagnosis <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                  <li>
+                    <div ui-sref="classifyDisease"> <a href="#" style="margin-left:50px;">&nbsp;Classify Disease</a></div>
+                  </li>
+                  <li>
+                    <div ui-sref="updateDiseaseStatus"> <a href="#" style="margin-left:50px;">&nbsp;Update Disease Status</a></div>
+                  </li>
+                  <li>
+                    <div ui-sref="diagnosisHistory"> <a href="#" style="margin-left:50px;">&nbsp;History</a></div>
+                  </li>
+                </ul>
+                <!-- /nav-second-level -->
+              </li>
+
+              <li>
+                <a href="#"><i class="fa fa-medkit nav_icon"></i>Treatment<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+
+                  <li>
+                    <a href="#" style="margin-left:37px;"><i class="fa fa-medkit nav_icon"></i>Medication<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                      <li>
+                        <div ui-sref="prescribeMedication"><a href="#" style="margin-left:85px;">&nbsp;Prescription</a></div>
+                      </li>
+                      <li>
+                        <div ui-sref="medicationHistory"><a href="#" style="margin-left:85px;">&nbsp;History</a></div>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#" style="margin-left:38px;">&nbsp;Hospital Admissions</a>
+                  </li>
+                </ul>
+                <!-- /nav-second-level -->
+              </li>
+
+              <li>
+                <div ui-sref="addPatientInfo"><a href="#" style="margin-left:18px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update Patient</a></div>
+              </li>
+
+              <li>
+                <div ui-sref="consultPatientInfo"><a href="#" style="margin-left:18px;"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;Patient Details</a></div>
+              </li>
+
+              <li>
+                <div ui-sref="observations"> <a href="#" class="elements">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-file-text nav_icon"></i>Observations</a></div>
+              </li>
+
+            </ul>
+          </div>
+          <!-- //sidebar-collapse -->
+        </nav>
+      </div>
+    </div>
+    <!--left-fixed -navigation-->
+    <!-- header-starts -->
+    <div class="sticky-header header-section ">
+      <div class="header-left">
+        <!--logo -->
+        <div class="logo">
+          <a ui-sref="searchPatient">
+            <ul>
+              <!--<li><img src="images/logo1.png" alt="" /></li>-->
+              <li>
+                <h1>HPCare</h1></li>
+              <div class="clearfix"> </div>
+            </ul>
+          </a>
+        </div>
+        <!--//logo-->
+
+        <div class="clearfix"> </div>
+      </div>
+
+      <div class="header-right">
+
+        <!--notification menu end -->
+        <div class="profile_details">
+          <ul>
+            <li class="dropdown profile_details_drop">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <div class="profile_img">
+                  <span class="prfil-img"><img src="/images/a.png" alt=""> </span>
+                  <div class="clearfix"></div>
+                </div>
+              </a>
+              <ul class="dropdown-menu drp-mnu">
+                <li>
+                  <div ui-sref="clinicProfile"><a href="#"><i class="fa fa-user"></i> Profile</a></div>
+                </li>
+                <li>
+                  <div ui-sref="logout"><a href="#"><i class="fa fa-sign-out"></i>Logout</a></div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!--toggle button start-->
+        <button id="showLeftPush"><i class="fa fa-bars"></i></button>
+        <!--toggle button end-->
+        <div class="clearfix"> </div>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+    <!-- //header-ends -->
+    <!-- main content start-->
+
+
+
+
+
+
+    <div id="page-wrapper">
+
+
+
+      <div class="main-page " style="margin-top:13%;" ng-controller="homeController as vm">
+        <span us-spinner="{radius:30, width:8, length: 16}" style="color:blue"></span>
+        <div data-ui-view="" ng-init="vm.visitManagerModal()">
+
+        </div>
+
+      </div>
+    </div>
+    <!--footer-->
+    <div class="dev-page">
+
+      <!-- page footer -->
+      <!-- dev-page-footer-closed dev-page-footer-fixed -->
+      <div class="dev-page-footer dev-page-footer-fixed">
+        <!-- container -->
+        <div class="container">
+          <div class="copyright">
+            <p>© 2016 HPCare</p>
+          </div>
+
+
+
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- /page footer -->
+    </div>
+    <!--//footer-->
+  </div>
+  <!-- Classie -->
+  <script src="/Scripts/classie.js"></script>
+  <script>
+    var menuLeft = document.getElementById('cbp-spmenu-s1'),
+      showLeftPush = document.getElementById('showLeftPush'),
+      body = document.body;
+
+    showLeftPush.onclick = function() {
+      classie.toggle(this, 'active');
+      classie.toggle(body, 'cbp-spmenu-push-toright');
+      classie.toggle(menuLeft, 'cbp-spmenu-open');
+      disableOther('showLeftPush');
+    };
+
+
+    function disableOther(button) {
+      if (button !== 'showLeftPush') {
+        classie.toggle(showLeftPush, 'disabled');
+      }
+    }
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+
+  <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="/Scripts/dev-loaders.js"></script>
+  <script type="text/javascript" src="/Scripts/dev-layout-default.js"></script>
+  <script type="text/javascript" src="/Scripts/jquery.marquee.js"></script>
+  <link href="/Content/bootstrap.min.css" rel="stylesheet">
+
+  <script type="text/javascript" src="/Scripts/plugins.js"></script>
+  <!--//max-plugin-->
+  <!--scrolling js-->
+  <script src="/Scripts/jquery.nicescroll.js"></script>
+  <script src="/Scripts/scripts.js"></script>
+
+  <!--<script src="/Scripts/jquery.fn.gantt.js"></script>-->
+  <!-- //status -->
+
+
+</body>
+
+</html>

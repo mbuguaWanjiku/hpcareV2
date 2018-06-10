@@ -1,0 +1,88 @@
+﻿
+
+<div id="page-wrapper">
+
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" id="modalContent">
+            </div>
+        </div>
+    </div>
+
+    <div class="main-page">
+
+        <div class="row">
+
+            <div class="col-md-7 monthly-grid">
+                <div class="panel panel-widget">
+                    <div class="panel-title">
+                        Monthly Status Report
+                        <ul class="panel-tools">
+                            <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
+                            <li><a class="icon expand-tool"><i class="fa fa-expand"></i></a></li>
+                            <li><a class="icon closed-tool"><i class="fa fa-times"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <!-- status -->
+                        <div class="contain">
+                            <div class="gantt"></div>
+                        </div>
+                        <!-- status -->
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <!--//row-->
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.fn.gantt.js"></script>
+
+<script>
+    @Html.Raw(ViewBag.teste)
+</script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('#btnIntervention').on('click', function (e) {
+                //using get sample....  param's object...
+                $.get(this.href, { id: 1 }, function(result) {
+                    $('#modalContent').html(result);
+                    $('#myModal').modal('show');
+
+                        $('form').submit(function (e) {
+                            e.preventDefault();
+                            if (!$(this).valid()) {
+                                return false;
+                            }
+                            $.ajax({
+                                url: this.action,
+                                type: this.method,
+                                data: $(this).serialize()
+                            }).done(function (result) {
+                                if (result.success) {
+                                $('#myModal').modal('hide');
+                                } else {
+                                    $.each(result.errors, function(key, val) {
+                                        var container = $('span[data-valmsg-for="' + key + '"]');
+                                        container.removeClass("field-validation-valid").addClass("field-validation-error");
+                                        container.html(val[val.length - 1].ErrorMessage);
+                                    });
+
+                                }
+                            }).fail(function (xhr, status, error) {
+                                alert('failed');
+                            });
+                        });
+                });
+
+                return false;
+            });
+
+        });
+
+    </script>

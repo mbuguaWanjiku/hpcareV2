@@ -1,0 +1,149 @@
+﻿<div ng-controller="PatientInformationsController" ng-init="Init()">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="panel panel-widget col-md-10">
+            <div class="progressbar-heading grids-heading">
+                <h2> {{Name}} Details</h2>
+            </div>
+
+            <div class="profile_img" style="float:right;margin-top:-5%; height:75px; width:75px; margin-right:5%;">
+                <span class="prfil-img"><img src="~/images/3.png" alt="" style="height:75px; width:75px;"> </span>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="but_list">
+                    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#personal" id="personal-tab" role="tab" data-toggle="tab" aria-controls="personal" aria-expanded="true">Personal Info</a></li>
+                            <li role="presentation"><a href="#risk" id="risk-tab" role="tab" data-toggle="tab" aria-controls="risk">Risk Factors</a></li>
+                            <li role="presentation"><a href="#allergy" id="allergy-tab" role="tab" data-toggle="tab" aria-controls="allergy">Allergies</a></li>
+                            <li role="presentation"><a href="#family" id="family-tab" role="tab" data-toggle="tab" aria-controls="family">Family History</a></li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="personal" aria-labelledby="personal-tab">
+
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Name</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control1 m-n">{{Name}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Birth Date</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control1 m-n">{{BirthDate | jsonDate :'dd-MM-yyyy' }}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Age Group</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control1 m-n">{{AgeGroup }}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Status</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control1 m-n">{{Status ? 'Alive' : 'Deceased'}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Gender</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control1 m-n">{{Gender}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Marital Status</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control1 m-n">{{MaritalStatus}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Address</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control1 m-n">{{Address}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Email</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control1 m-n">{{Email}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Telephone</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control1 m-n">{{Telephone}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Identification</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control1 m-n">{{Identification}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="family" aria-labelledby="family-tab">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Family History</th>
+                                            <th>Carrier</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="FamilyHistoryCategories in PatientFamilyHistoryCategories track by $index">
+                                            <td> {{FamilyHistoryCategories.FamilyHistoryName}}</td>
+                                            <td> {{FamilyHistoryCategories.Carrier}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="risk" aria-labelledby="risk-tab">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Risk Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="RiskFactorsCategories in PatientRiskFactorsCategories track by $index">
+                                            <td> {{RiskFactorsCategories.RiskFactorName}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="allergy" aria-labelledby="allergy-tab">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Name</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="AllergyCategories in PatientAllergyCategories track by $index">
+                                            <td> <span class="fa fa-plus" ng-click="updateAllergy(AllergyCategories)"></span></td>
+                                            <td> {{AllergyCategories.Allergy_Name}} </td>
+                                            <td> {{AllergyCategories.Allergy_start_date | jsonDate : 'dd-MM-yyyy' }} </td>
+                                            <td> {{AllergyCategories.Allergy_end_date | jsonDate : 'dd-MM-yyyy' }} </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

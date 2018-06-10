@@ -1,0 +1,65 @@
+﻿
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">Enter LFT Lab Exam Results</h4>
+</div>
+<div class="modal-body">
+    <span us-spinner="{radius:30, width:8, length: 16}"></span>
+    <div class="form-body" ng-controller="LabExamsController" ng-init="initLFT()">
+        <form class="form-horizontal">
+
+            <div class="form-group">
+                <label for="focusedinput3" class="col-md-2 control-label">SGT</label>
+                <div class="col-md-7">
+                    <input type="text" class="form-control" id="focusedinput3" ng-model="LabExams.SGT" />
+                </div>
+                <div class="col-sm-3">
+                    <p class="help-block">Min: {{ValuesMin[0]}} - Max: {{ValuesMax[0]}}</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="focusedinput4" class="col-md-2 control-label">AST</label>
+                <div class="col-md-7">
+                    <input type="text" class="form-control" id="focusedinput4" ng-model="LabExams.AST" />
+                </div>
+                <div class="col-sm-3">
+                    <p class="help-block">Min: {{ValuesMin[1]}} - Max: {{ValuesMax[1]}}</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="focusedinput5" class="col-md-2 control-label">LDH</label>
+                <div class="col-md-7">
+                    <input type="text" class="form-control" id="focusedinput5" ng-model="LabExams.LDH" />
+                </div>
+                <div class="col-sm-3">
+                    <p class="help-block">Min: {{ValuesMin[2]}} - Max: {{ValuesMax[2]}}</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="focusedinput6" class="col-md-2 control-label">Alkaline</label>
+                <div class="col-md-7">
+                    <input type="text" class="form-control" id="focusedinput6" ng-model="LabExams.Alkaline" />
+                </div>
+                <div class="col-sm-3">
+                    <p class="help-block">Min: {{ValuesMin[3]}} - Max: {{ValuesMax[3]}}</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="focusedinput7" class="col-md-2 control-label">Bilirubin</label>
+                <div class="col-md-7">
+                    <input type="text" class="form-control" id="focusedinput7" ng-model="LabExams.Bilirubin" />
+                </div>
+                <div class="col-sm-3">
+                    <p class="help-block">Min: {{ValuesMin[4]}} - Max: {{ValuesMax[4]}}</p>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="SaveLft(); $close()">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

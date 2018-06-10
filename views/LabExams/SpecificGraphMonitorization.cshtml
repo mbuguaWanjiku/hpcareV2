@@ -1,0 +1,44 @@
+﻿<div class="col-md-1"></div>
+<div class="panel panel-widget col-md-10">
+    <div class="progressbar-heading grids-heading">
+        <h2>Statistics</h2>
+    </div>
+
+    <div class="well col-md-3">
+
+        <div ng-controller="SpecificController">
+
+            <div id="mcdtDropDown" class="form-control-wrapper dropdown dropdown-toggle">
+
+                <label>Choose MCDT</label><br />
+
+                <select id="MCDTid_level1"
+                        class="form-control"
+                        name="MCDTdropdown1"
+                        ng-model="Mcdt"
+                        ng-options="cg as cg.desc for cg in McdtListLevel1"
+                        ng-change="processLevel1()" >
+                    <option value="" selected="selected">Choose</option>
+                </select>
+                <br />
+
+                <select id="MCDTid_level2"
+                        class="form-control"
+                        name="MCDTdropdown2"
+                        ng-model="Mcdt"
+                        ng-hide="Mcdt.desc == null"
+                        ng-options="cg as cg.desc for cg in McdtListLevel2"
+                        ng-change="processLevel2()" >
+                    <option value="" selected="selected">Choose</option>
+                </select>
+                <br />
+
+                <button type="submit" class="btn btn-primary" ng-click="clickedElement()">Submit</button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-1"></div>
+
+</div>

@@ -1,0 +1,93 @@
+﻿
+
+<div class="col-md-1"></div>
+<div class="panel panel-widget col-md-10">
+
+
+    <ul class="nofitications-dropdown pull-right" style="margin-top:-4%;margin-right:-3%;">
+
+        <li class="dropdown head-dpdn">
+            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-question-circle-o"></i></a>
+            <ul class="dropdown-menu anti-dropdown-menu">
+                <li>
+                    <div class="notification_header">
+                        <h3>Get Patient Diagnosis History</h3>
+                    </div>
+                </li>
+                <li>
+                    <a>
+                        <div class="modal-body" ng-controller="HelpController">
+                            <span class="task-desc">{{helpPatientDiagnosisHistory}}</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div class="progressbar-heading grids-heading">
+        <h2>Diagnosis History</h2>
+    </div>
+
+    <div class="col-md-12">
+        <div class="selected dropDownOptions" ng-controller="DiagnosisHistoryController as vm" ng-init="vm.loadHistory()">
+            <div class="">
+                <span class="glyphicon glyphicon-filter"></span>
+
+                <select ng-model="vm.sortColumn" class="dropDownOptions">
+                    <option value="StartDate" selected="selected">StartDate</option>
+
+                    <option value="EndDate">EndDate</option>
+                    <option value="DiseaseCIDCategory">ICD Category</option>
+                    <option value="DiseaseCIDCode">Disease ICD</option>
+                </select><span></span>
+                <input type="number" step="2" min="0" max="20" ng-model="vm.rowLimit" placeholder="rows" style="width:140px" />
+            </div>
+
+            <table class="table table-hover form-control-wrapper">
+                <caption>Inactive Diseases Pool</caption>
+                <thead>
+                    <tr><td>Nr</td>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>ICD Version</th>
+                        <th>ICD Category</th>
+                        <th>ICD Code</th>
+                        <th>Physician</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="diagosis in diagnoses">
+                    <tr ng-repeat="diagnosis in vm.diagnosesHistory| limitTo:vm.rowLimit | orderBy:vm.sortColumn">
+
+                        <td style="width:2%">{{$index + 1}}</td>
+                        <td>
+                            {{diagnosis.StartDate | jsonDate :'dd-M-yyyy H:mm'}}
+                        </td>
+                        <td>
+                            {{diagnosis.EndDate | jsonDate :'dd-M-yyyy H:mm'}}
+                        </td>
+                        <td>
+                            {{diagnosis.Version}}
+                        </td>
+                        <td>
+                            {{diagnosis.DiseaseCIDCategory}}
+                        </td>
+                        <td>
+                            {{diagnosis.DiseaseCIDCode}}
+                        </td>
+                        <td>
+                            Physician
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="col-md-1"></div>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DataLayer.Entities.MCDT.LabExams>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LabTec.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MCDT_units)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MCDT_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MCDT_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LabExams_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LabExam_data_in)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LabExam_date_out)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MCDT_units)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MCDT_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MCDT_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LabExams_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LabExam_data_in)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LabExam_date_out)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MCDT_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MCDT_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MCDT_ID })
+        </td>
+    </tr>
+}
+
+</table>
